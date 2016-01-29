@@ -20,7 +20,7 @@ The test data are available here:
 For ease of processing files and simplification of code, download the csv files and save to the set working directory, MachineLearning on the desktop.
 
 ```{r setWorkingDirectory}
-setwd("~/Desktop/MachineLearning")
+setwd("~/Desktop/coursera/MachineLearning")
 ```
 
 ```{r loadLibraries}
@@ -28,9 +28,6 @@ setwd("~/Desktop/MachineLearning")
 library(caret) 
 library(rpart)
 library(randomForest)
-library(ggplot2)
-library(party)
-library(kernlab)
 library(AppliedPredictiveModeling)
 ```
 
