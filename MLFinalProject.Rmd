@@ -1,7 +1,10 @@
 ---
 title: "Machine Learning Course Project"
+output:
+  html_document:
+    keep_md: yes
+    self_contained: no
 date: "January 27, 2016"
-output: html_document
 ---
 
 ##Background

@@ -163,40 +163,40 @@ modelRF
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 2232    1    0    0    0
-##          B    0 1517    3    0    0
-##          C    0    0 1365    2    0
-##          D    0    0    0 1284    0
-##          E    0    0    0    0 1442
+##          A 2231    1    0    0    0
+##          B    1 1517    5    0    0
+##          C    0    0 1361    0    0
+##          D    0    0    2 1286    2
+##          E    0    0    0    0 1440
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9992          
-##                  95% CI : (0.9983, 0.9997)
+##                Accuracy : 0.9986          
+##                  95% CI : (0.9975, 0.9993)
 ##     No Information Rate : 0.2845          
 ##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.999           
+##                   Kappa : 0.9982          
 ##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            1.0000   0.9993   0.9978   0.9984   1.0000
-## Specificity            0.9998   0.9995   0.9997   1.0000   1.0000
-## Pos Pred Value         0.9996   0.9980   0.9985   1.0000   1.0000
-## Neg Pred Value         1.0000   0.9998   0.9995   0.9997   1.0000
+## Sensitivity            0.9996   0.9993   0.9949   1.0000   0.9986
+## Specificity            0.9998   0.9991   1.0000   0.9994   1.0000
+## Pos Pred Value         0.9996   0.9961   1.0000   0.9969   1.0000
+## Neg Pred Value         0.9998   0.9998   0.9989   1.0000   0.9997
 ## Prevalence             0.2845   0.1935   0.1744   0.1639   0.1838
-## Detection Rate         0.2845   0.1933   0.1740   0.1637   0.1838
-## Detection Prevalence   0.2846   0.1937   0.1742   0.1637   0.1838
-## Balanced Accuracy      0.9999   0.9994   0.9987   0.9992   1.0000
+## Detection Rate         0.2843   0.1933   0.1735   0.1639   0.1835
+## Detection Prevalence   0.2845   0.1941   0.1735   0.1644   0.1835
+## Balanced Accuracy      0.9997   0.9992   0.9974   0.9997   0.9993
 ```
 
 ```r
 plot(modelFitA1)
 ```
 
-![](index_files/figure-html/randomForest-1.png) 
+![](MLFinalProject_files/figure-html/randomForest-1.png) 
 
 ```r
 importance(modelFitA1)
@@ -204,63 +204,63 @@ importance(modelFitA1)
 
 ```
 ##                      MeanDecreaseGini
-## user_name                    89.77920
-## raw_timestamp_part_1        953.77048
-## raw_timestamp_part_2         10.72094
-## cvtd_timestamp             1430.59179
-## num_window                  538.66808
-## roll_belt                   523.70417
-## pitch_belt                  301.98972
-## yaw_belt                    351.15694
-## total_accel_belt            111.99706
-## gyros_belt_x                 36.92476
-## gyros_belt_y                 52.32103
-## gyros_belt_z                113.29464
-## accel_belt_x                 64.46205
-## accel_belt_y                 65.38756
-## accel_belt_z                200.47035
-## magnet_belt_x               111.92927
-## magnet_belt_y               197.78657
-## magnet_belt_z               188.14990
-## roll_arm                    119.77482
-## pitch_arm                    55.33093
-## yaw_arm                      82.13894
-## total_accel_arm              29.01066
-## gyros_arm_x                  42.41750
-## gyros_arm_y                  41.80405
-## gyros_arm_z                  18.06497
-## accel_arm_x                  84.11830
-## accel_arm_y                  54.05321
-## accel_arm_z                  39.32734
-## magnet_arm_x                 84.38316
-## magnet_arm_y                 71.14505
-## magnet_arm_z                 52.26065
-## roll_dumbbell               189.65772
-## pitch_dumbbell               83.99346
-## yaw_dumbbell                112.99471
-## total_accel_dumbbell        117.74722
-## gyros_dumbbell_x             40.69216
-## gyros_dumbbell_y            107.88070
-## gyros_dumbbell_z             22.68877
-## accel_dumbbell_x            133.68755
-## accel_dumbbell_y            187.83419
-## accel_dumbbell_z            133.96881
-## magnet_dumbbell_x           221.40833
-## magnet_dumbbell_y           310.57406
-## magnet_dumbbell_z           304.41019
-## roll_forearm                250.93362
-## pitch_forearm               299.34184
-## yaw_forearm                  48.79677
-## total_accel_forearm          29.46125
-## gyros_forearm_x              26.18619
-## gyros_forearm_y              40.88536
-## gyros_forearm_z              26.54757
-## accel_forearm_x             130.86616
-## accel_forearm_y              43.08441
-## accel_forearm_z              90.79598
-## magnet_forearm_x             70.05236
-## magnet_forearm_y             75.82485
-## magnet_forearm_z             93.14230
+## user_name                   95.718345
+## raw_timestamp_part_1       982.764090
+## raw_timestamp_part_2         9.673919
+## cvtd_timestamp            1393.992841
+## num_window                 588.527582
+## roll_belt                  546.827101
+## pitch_belt                 299.638480
+## yaw_belt                   334.964848
+## total_accel_belt            99.559383
+## gyros_belt_x                38.779201
+## gyros_belt_y                51.468809
+## gyros_belt_z               124.432224
+## accel_belt_x                59.918307
+## accel_belt_y                66.597343
+## accel_belt_z               196.824369
+## magnet_belt_x              110.866417
+## magnet_belt_y              198.553920
+## magnet_belt_z              185.528124
+## roll_arm                   125.305474
+## pitch_arm                   57.322928
+## yaw_arm                     81.523625
+## total_accel_arm             27.130126
+## gyros_arm_x                 41.554543
+## gyros_arm_y                 41.647606
+## gyros_arm_z                 18.116645
+## accel_arm_x                 92.246388
+## accel_arm_y                 50.561686
+## accel_arm_z                 38.837497
+## magnet_arm_x                92.327018
+## magnet_arm_y                73.894905
+## magnet_arm_z                57.061664
+## roll_dumbbell              187.594279
+## pitch_dumbbell              83.497067
+## yaw_dumbbell               103.647975
+## total_accel_dumbbell       115.031643
+## gyros_dumbbell_x            39.282592
+## gyros_dumbbell_y            96.095199
+## gyros_dumbbell_z            22.141805
+## accel_dumbbell_x           125.366950
+## accel_dumbbell_y           177.252175
+## accel_dumbbell_z           138.047520
+## magnet_dumbbell_x          245.087768
+## magnet_dumbbell_y          321.134301
+## magnet_dumbbell_z          290.462288
+## roll_forearm               228.083049
+## pitch_forearm              289.988371
+## yaw_forearm                 52.255099
+## total_accel_forearm         33.310660
+## gyros_forearm_x             23.486325
+## gyros_forearm_y             37.190887
+## gyros_forearm_z             26.347075
+## accel_forearm_x            130.504249
+## accel_forearm_y             43.201209
+## accel_forearm_z             87.633855
+## magnet_forearm_x            69.013983
+## magnet_forearm_y            71.646365
+## magnet_forearm_z            90.094905
 ```
 
 ```r
@@ -272,33 +272,33 @@ print(modelRF)
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 2232    1    0    0    0
-##          B    0 1517    3    0    0
-##          C    0    0 1365    2    0
-##          D    0    0    0 1284    0
-##          E    0    0    0    0 1442
+##          A 2231    1    0    0    0
+##          B    1 1517    5    0    0
+##          C    0    0 1361    0    0
+##          D    0    0    2 1286    2
+##          E    0    0    0    0 1440
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9992          
-##                  95% CI : (0.9983, 0.9997)
+##                Accuracy : 0.9986          
+##                  95% CI : (0.9975, 0.9993)
 ##     No Information Rate : 0.2845          
 ##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.999           
+##                   Kappa : 0.9982          
 ##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            1.0000   0.9993   0.9978   0.9984   1.0000
-## Specificity            0.9998   0.9995   0.9997   1.0000   1.0000
-## Pos Pred Value         0.9996   0.9980   0.9985   1.0000   1.0000
-## Neg Pred Value         1.0000   0.9998   0.9995   0.9997   1.0000
+## Sensitivity            0.9996   0.9993   0.9949   1.0000   0.9986
+## Specificity            0.9998   0.9991   1.0000   0.9994   1.0000
+## Pos Pred Value         0.9996   0.9961   1.0000   0.9969   1.0000
+## Neg Pred Value         0.9998   0.9998   0.9989   1.0000   0.9997
 ## Prevalence             0.2845   0.1935   0.1744   0.1639   0.1838
-## Detection Rate         0.2845   0.1933   0.1740   0.1637   0.1838
-## Detection Prevalence   0.2846   0.1937   0.1742   0.1637   0.1838
-## Balanced Accuracy      0.9999   0.9994   0.9987   0.9992   1.0000
+## Detection Rate         0.2843   0.1933   0.1735   0.1639   0.1835
+## Detection Prevalence   0.2845   0.1941   0.1735   0.1644   0.1835
+## Balanced Accuracy      0.9997   0.9992   0.9974   0.9997   0.9993
 ```
 
 
@@ -315,13 +315,13 @@ plot(modelFitB1)
 text(modelFitB1)
 ```
 
-![](index_files/figure-html/decisionTree-1.png) 
+![](MLFinalProject_files/figure-html/decisionTree-1.png) 
 
 ```r
 plotcp(modelFitB1)
 ```
 
-![](index_files/figure-html/decisionTree-2.png) 
+![](MLFinalProject_files/figure-html/decisionTree-2.png) 
 
 A quick look at the results on teh decision tree and we see the variables we're looking for intermingled. The Random Forest has a 99.83% accuracy rate, a .17% out-of-sample error rate, so we'll progress with this for our prediction set.
 
@@ -368,7 +368,7 @@ predictionFinal
 ```
 
 ```
-## 22  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 
+##  2  3 41  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 
 ##  B  A  B  A  A  E  D  B  A  A  B  C  B  A  E  E  A  B  B  B 
 ## Levels: A B C D E
 ```
