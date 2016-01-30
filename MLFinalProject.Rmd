@@ -4,6 +4,7 @@ output:
   html_document:
     keep_md: yes
     self_contained: no
+  pdf_document: default
 date: "January 27, 2016"
 ---
 
@@ -53,7 +54,7 @@ The test set that was provided contains the exercise readings for 20 participant
 
 ###Cleaning the data
 
-We'll clean out the <a href=http://www.inside-r.org/packages/cran/caret/docs/nearZeroVar>NearZeroVariance</a> variables and remove them and the first column (a count of the observations) from our data as these will not contribute to the predictive model.
+We'll clean out the <a href=http://www.inside-r.org/packages/cran/caret/docs/nearZeroVar>NearZeroVariance</a> variables, the observations that contain 75% "NA"s and remove them and the first column (a count of the observations) from our data as these will not contribute to the predictive model.
 ```{r cleanData}
 nzv <- nearZeroVar(pmlTrain, saveMetrics=TRUE)  ## remove nearZeroVariances
 pmlTrain <- pmlTrain[,nzv$nzv==FALSE]
@@ -108,7 +109,7 @@ print(modelRF)
 
 
 ###Prediction with Decision Trees
-<a href=http://blog.revolutionanalytics.com/2013/06/plotting-classification-and-regression-trees-with-plotrpart.html>Create decision tree</a>
+For <a href=http://blog.revolutionanalytics.com/2013/06/plotting-classification-and-regression-trees-with-plotrpart.html>decision tree information</a>
 
 Instead of plotting a decision tree, we can quickly look at a graph of the cross-validation results, and review the confusion matrix resutls and see that the error rate is higher than the random forest method. 
 
@@ -158,4 +159,4 @@ And our final results for our 20 test cases.
 predictionFinal
 ```
 
-
+This created a 20/20 match for the quiz. 
