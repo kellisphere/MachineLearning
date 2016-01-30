@@ -20,25 +20,24 @@ The training data for this project are available here:
 The test data are available here:
 
 <https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv>
-For ease of processing files and simplification of code, download the csv files and save to the set working directory, MachineLearning on the desktop.
+
+For ease of processing files and simplification of code, download the csv files and save to the set working directory.
 
 ```{r setWorkingDirectory}
 setwd("~/Desktop/coursera/MachineLearning")
 ```
 
+Load the libraries we'll be using:
 ```{r loadLibraries}
 ## Load the preferred libraries 
 library(caret) 
 library(rpart)
+library(plotmo)
 library(randomForest)
 library(AppliedPredictiveModeling)
 ```
 
-Two sets of data were provided, training and test. 
-
-The Test set contains the exercise readings for 20 participants without the "classe" variable of exercise provided. We will attempt to determine this "classe" with the use of predictive modelling, built using the training set. We will set the Test set to the side until the models are completed.
- 
- With the following code, we'll read the data.
+With the following code, we'll read the data, and take a quick look at the properties. I also took a quick look at the .csv file by opening the test version in Excel.
 
 ```{r readData}
 pmlTrain <- read.csv("pml-training.csv", header=TRUE, na.strings=c("NA","#Div/0!"))  ## The training set
@@ -48,11 +47,13 @@ dim(pmlTest)
 summary(pmlTrain$classe)
 ```
 
-There are 19622 records with 159 variables (the first column is just a numeric count of observations). The "classe" variable we are solving for is divided among 5 classes. 
+In the training set, there are 19622 records with 159 variables (the first column is just a numeric count of observations). The "classe" variable we are solving for is divided among 5 classes. 
+
+The test set that was provided contains the exercise readings for 20 participants without the "classe" variable provided. We'll attempt to determine this "classe" with the use of predictive modelling, built using the training set. We'll set the test set to the side until the models are completed. At the end,  we'll apply the same cleaning and transformations to that data, then apply our model. 
 
 ###Cleaning the data
 
-We'll clean out the <a href=http://www.inside-r.org/packages/cran/caret/docs/nearZeroVar>NearZeroVariance</a> variables and remove them from our data, and remove the first column, a count of the observations.
+We'll clean out the <a href=http://www.inside-r.org/packages/cran/caret/docs/nearZeroVar>NearZeroVariance</a> variables and remove them and the first column (a count of the observations) from our data as these will not contribute to the predictive model.
 ```{r cleanData}
 nzv <- nearZeroVar(pmlTrain, saveMetrics=TRUE)  ## remove nearZeroVariances
 pmlTrain <- pmlTrain[,nzv$nzv==FALSE]
@@ -96,12 +97,12 @@ dim(test)
 For <a href=http://www.statmethods.net/advstats/cart.html>Random Forest information</a>
 ```{r randomForest}
 set.seed(4726)
-modelFitA1 <- randomForest(classe ~ ., data=train)
-predictionA1 <- predict(modelFitA1, test, type = "class")
-modelRF <- confusionMatrix(predictionA1, test$classe)
+modelFitRF1 <- randomForest(classe ~ ., data=train)
+predictionRF1 <- predict(modelFitRF1, test, type = "class")
+modelRF <- confusionMatrix(predictionRF1, test$classe)
 modelRF
-plot(modelFitA1)
-importance(modelFitA1)
+plot(modelFitRF1)
+importance(modelFitRF1)
 print(modelRF)
 ```
 
@@ -109,17 +110,18 @@ print(modelRF)
 ###Prediction with Decision Trees
 <a href=http://blog.revolutionanalytics.com/2013/06/plotting-classification-and-regression-trees-with-plotrpart.html>Create decision tree</a>
 
-Instead of plotting a decision tree, we can quickly look at a graph of the cross-validation results, and see that the error rate is higher than the random forest method. 
+Instead of plotting a decision tree, we can quickly look at a graph of the cross-validation results, and review the confusion matrix resutls and see that the error rate is higher than the random forest method. 
 
 ```{r decisionTree}
 set.seed(4726)
-modelFitB1 <- rpart(classe ~., method="class", data=train)
-plot(modelFitB1)
-text(modelFitB1)
-plotcp(modelFitB1)
+modelFitDT1 <- rpart(classe ~.,method="class", data=train)
+predictionDT1 <- predict(modelFitDT1, test, type = "class")
+modelDT <- confusionMatrix(predictionDT1,test$classe)
+plotcp(modelFitDT1)
+modelDT
 ```
 
-A quick look at the results on teh decision tree and we see the variables we're looking for intermingled. The Random Forest has a 99.83% accuracy rate, a .17% out-of-sample error rate, so we'll progress with this for our prediction set.
+A quick look at the results on the Decision Tree method and we see a lower accuracy rate, 88.73, than the Random Forest accuracy rate of 99.83% witha .17% for our out-of-sample error rate, so we'll progress with the Random Forest for our prediction set.
 
 ###Predicting our results
 First, we'll use the same cleaning methods as above:
@@ -148,10 +150,10 @@ pmlTest <- pmlTest[-1,]
 
 Then we apply the prediction model to the data:
 ```{r predictingFinal}
-predictionFinal <-predict(modelFitA1, pmlTest, type="class")
+predictionFinal <-predict(modelFitRF1, pmlTest, type="class")
 ```
 
-And our final results.
+And our final results for our 20 test cases.
 ```{r finalResults}
 predictionFinal
 ```
